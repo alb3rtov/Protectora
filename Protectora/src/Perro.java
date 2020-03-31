@@ -102,7 +102,7 @@ public class Perro extends Animal {
 	
 	
 	public String toString() {
-		String cadena = "Gato [nombre = " + nombre.toUpperCase() + ", sexo = ";
+		String cadena = "Perro [nombre = " + nombre.toUpperCase() + ", sexo = ";
 		cadena += sexo.equals("m") ? "macho" : "hembra";
 		cadena += ", años = " + edad + ", sociable = ";
 		cadena += sociable ? "si" : "no";

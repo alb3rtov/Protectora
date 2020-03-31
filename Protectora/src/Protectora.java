@@ -7,7 +7,7 @@ public class Protectora{
 	private static final int CAPACIDAD_PROTECTORA = 30;
 	private Animal[] animales;
 	
-	
+	/*
 	public Protectora(String nombre) {
 		super();
 		this.nombre = nombre;
@@ -15,17 +15,28 @@ public class Protectora{
 		animales = new Animal [CAPACIDAD_PROTECTORA];
 		nAnimales = 0;
 	}
+	*/
 	
+	public Protectora(int nAnimales, String nombre, Animal [] animales) {
+		this.nAnimales = nAnimales;
+		this.nombre = nombre;
+		this.animales = animales;
+		
+	}
 	public int getNanimales() {
 		return nAnimales;
 	}
 	
-	public String getNombreAnimal() {
+	public String getNombre() {
 		return nombre;
 	}
 	
 	public int getCapacidad() {
 		return CAPACIDAD_PROTECTORA;
+	}
+	
+	public Animal [] getAnimales() {
+		return animales;
 	}
 	
 	public void setNanimales(int nAnimales) {
@@ -35,34 +46,11 @@ public class Protectora{
 	public void setNombre(String nombreAnimal) {
 		this.nombre = nombreAnimal;
 	}
-	/*
-	public void setAnimales(String nombre, String sexo, int edad, boolean sociable, int nSolicitudes, Solicitud [] solicitudes, boolean esterilizado) {
-		for (int i = 0; i < animales.length; i++) {
-			animales[i].setNombre(nombre);
-			animales[i].setEdad(edad);
-			animales[i].setSociable(sociable);
-			animales[i].setNSolicitudes(nSolicitudes);
-			animales[i].setSolicitudes(solicitudes);
-			((Gato) animales[i]).setEsterilizado(esterilizado);
-		}
+	
+	public void setAnimales(Animal [] animales) {
+		this.animales = animales;
 	}
-		
-	public void setAnimales(String nombre, String sexo, int edad, boolean sociable, int nSolicitudes, 
-			Solicitud [] solicitudes, String raza, double tamanio, boolean ppp, boolean leishmania) {
-		
-		for (int i = 0; i < solicitudes.length; i++) {
-			animales[i].setNombre(nombre);
-			animales[i].setEdad(edad);
-			animales[i].setSociable(sociable);
-			animales[i].setNSolicitudes(nSolicitudes);
-			animales[i].setSolicitudes(solicitudes);
-			((Perro) animales[i]).setRaza(raza);
-			((Perro) animales[i]).setTamanio(tamanio);
-			((Perro) animales[i]).setPPP(ppp);
-			((Perro) animales[i]).setLeishmania(leishmania);	
-		}
-	}
-	*/
+	
 	public boolean addAnimal(Animal animal) {
 		
 		boolean esAgregado;
@@ -95,6 +83,7 @@ public class Protectora{
 	public String devolverDatosAnimales() {
 		
 		String cadena = "";
+
 		
 		for (int i = 0; i < animales.length; i++) {
 			cadena += animales[i].toString();
