@@ -82,18 +82,18 @@ public class Perro extends Animal {
 			if (tamanio <= 15) {
 				//200 gr al dia
 				cantidadPienso = 200;
-				gastos = cantidadPienso * PRECIO_PIENSO_POR_GR * 365;
+				gastos = cantidadPienso * 7;
 			}
 			else if (tamanio > 15 && tamanio <= 25) {
 				//300 gr al dia
 				cantidadPienso = 300;
-				gastos = cantidadPienso * PRECIO_PIENSO_POR_GR * 365;
+				gastos = cantidadPienso * 7;
 			}
 			
 			else {
 				//1.5% de su peso en comida al dia.
 				cantidadPienso = tamanio * (1.5/100);
-				gastos = cantidadPienso * PRECIO_PIENSO_POR_GR * 365;
+				gastos = cantidadPienso * 7;
 			}
 		}
 		

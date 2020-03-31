@@ -71,8 +71,8 @@ public class Protectora{
 		int encontrado = -1;
 		
 		for (int i = 0; i < animales.length; i++) {
-			if (nombre == animales[i].getNombre()) {
-				encontrado = 1;
+			if (nombre.equalsIgnoreCase(animales[i].getNombre())) {
+				encontrado = i;
 				break;
 			}
 		}
@@ -94,25 +94,34 @@ public class Protectora{
 	
 	public void addSolicitud(String nombreS, int tipoSolicitud, int telefono, String nombre) {
 		
+		boolean encontrado = false;
+		
 		for (int i = 0; i < animales.length; i++) {
-			if (nombre == animales[i].getNombre()) {
+			if (nombre.equalsIgnoreCase(animales[i].getNombre())) {
 				if (animales[i].getNSolicitudes() == 10) {
-					System.out.println("No se pueden realizar mas solicitudes al animal " + animales[i].getNombre());
+					System.out.println("No se pueden realizar mas solicitudes al animal " + animales[i].getNombre() + ".\n");
+					encontrado = true;
 					break;
 				}
 				
 				else {
+					encontrado = true;
 					animales[i].crearSolicitud(nombreS, tipoSolicitud, telefono);
+					System.out.println("Solicitud añadida.\n");
 					break;
 				}
 			}
+		}
+		
+		if (!encontrado) {
+			System.out.println("No se a encontrado ningun animal con el nombre " + nombre + ".\n");
 		}
 	}
 	
 	public double calcularGatosEsterGatas(Clinica clinica) {
 	
 		double gastos = 0;
-		gastos = 10 * numeroGatasNoEsterilizadas() * 12; // 10 es el coste de esterilizacion
+		gastos = clinica.getPrecio() * numeroGatasNoEsterilizadas() * 12; // 10 es el coste de esterilizacion
 		
 		return gastos;
 	}

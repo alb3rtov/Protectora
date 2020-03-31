@@ -76,7 +76,8 @@ abstract class Animal implements Constantes {
 		
 	public void crearSolicitud(String nombre, int tipoSolicitud, int telefono) {
 		
-		Solicitud solicitud = new Solicitud(nombre, tipoSolicitud, telefono);	
+		Solicitud solicitud = new Solicitud(nombre, tipoSolicitud, telefono);
+		nSolicitudes++;
 	}
 	
 	abstract double calcularGastosVeterinarioAnimal();
