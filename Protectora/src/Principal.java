@@ -34,10 +34,11 @@ public class Principal {
 				System.out.println("6.- Calcular la cantidad de pienso de perro adulto que se necesita por semana");
 				System.out.println("7.- Calcular la cantidad de subveccion que concede el ayuntamiento");
 				System.out.println("8.- Salir\n");
+				System.out.println("Introduzca una de las opciones (1-8): ");
 				key = TECLADO.nextInt();
 
 				while (key < 1 || key > 8) {
-					System.out.println("Introduzca una opcion correcta");
+					System.out.println("Introduzca una opcion correcta (1-8): ");
 					key = TECLADO.nextInt();
 				}
 
@@ -53,12 +54,12 @@ public class Principal {
 					
 					System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
 					int tipoSolicitud = TECLADO.nextInt();
-					/*
-					while (tipoSolicitud != 0 || tipoSolicitud != 1) {
+					
+					while (tipoSolicitud != 0 && tipoSolicitud != 1) {
 						System.out.println("Introduzca un dato correcto para tipo de solicitud (0-adopcion / 1-acogida): ");
 						tipoSolicitud = TECLADO.nextInt();
 					}
-					*/
+					
 					System.out.println("Introduzca su numero de telefono: ");
 					int telefono = TECLADO.nextInt();
 					
@@ -73,7 +74,7 @@ public class Principal {
 					System.out.println("Introduzca el nombre del animal a " + tSolicitud + ": ");
 					String nombre = TECLADO.nextLine();
 					
-					protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre);
+					System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
 					
 					break;
 				case 3:

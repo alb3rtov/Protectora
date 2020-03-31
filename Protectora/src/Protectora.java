@@ -92,14 +92,15 @@ public class Protectora{
 		return cadena;
 	}
 	
-	public void addSolicitud(String nombreS, int tipoSolicitud, int telefono, String nombre) {
+	public String addSolicitud(String nombreS, int tipoSolicitud, int telefono, String nombre) {
 		
 		boolean encontrado = false;
+		String cadena = "";
 		
 		for (int i = 0; i < animales.length; i++) {
 			if (nombre.equalsIgnoreCase(animales[i].getNombre())) {
 				if (animales[i].getNSolicitudes() == 10) {
-					System.out.println("No se pueden realizar mas solicitudes al animal " + animales[i].getNombre() + ".\n");
+					cadena = "No se pueden realizar mas solicitudes al animal " + animales[i].getNombre();
 					encontrado = true;
 					break;
 				}
@@ -107,15 +108,17 @@ public class Protectora{
 				else {
 					encontrado = true;
 					animales[i].crearSolicitud(nombreS, tipoSolicitud, telefono);
-					System.out.println("Solicitud añadida.\n");
+					cadena = "Solicitud añadida.";
 					break;
 				}
 			}
 		}
 		
 		if (!encontrado) {
-			System.out.println("No se a encontrado ningun animal con el nombre " + nombre + ".\n");
+			cadena = "No se ha encontrado ningun animal con el nombre " + nombre;
 		}
+		
+		return cadena;
 	}
 	
 	public double calcularGatosEsterGatas(Clinica clinica) {
