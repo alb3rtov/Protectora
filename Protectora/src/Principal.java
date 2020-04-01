@@ -2,7 +2,7 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Principal {
 
@@ -11,8 +11,8 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		int nAnimales = 15;
-		boolean salir = false;
-		int key;
+		boolean salir = false, exit = false;
+		int opcion = 0, tipoSolicitud = 0;
 		
 		Animal [] animales = new Animal[nAnimales];
 		Clinica clinica = new Clinica("Veterval", 684574527, 8);
@@ -40,14 +40,18 @@ public class Principal {
 			System.out.println("7.- Calcular la cantidad de subveccion que concede el ayuntamiento");
 			System.out.println("8.- Salir\n");
 			System.out.println("Introduzca una de las opciones (1-8): ");
-			key = TECLADO.nextInt();
-
-			while (key < 1 || key > 8) {
-				System.out.println("Introduzca una opcion correcta (1-8): ");
-				key = TECLADO.nextInt();
-			}
-
-			switch (key) {
+			
+		
+			do  {
+				try {
+					opcion = leerDatoRango(1,8);
+					exit = true;
+				} catch (NumeroFueraRangoException e) {
+					System.out.println("Introduzca una opcion correcta del menu (1-8): ");
+				}
+			} while (!exit);
+			
+			switch (opcion) {
 			case 1:
 				System.out.println(protectora.devolverDatosAnimales());
 				break;
@@ -58,13 +62,16 @@ public class Principal {
 				String nombreS = TECLADO.nextLine();
 
 				System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
-				int tipoSolicitud = TECLADO.nextInt();
-
-				while (tipoSolicitud != 0 && tipoSolicitud != 1) {
-					System.out.println("Introduzca un dato correcto para tipo de solicitud (0-adopcion / 1-acogida): ");
-					tipoSolicitud = TECLADO.nextInt();
-				}
-
+				exit = false;
+				do  {
+					try {
+						tipoSolicitud = leerDatoRango(0,1);
+						exit = true;
+					} catch (NumeroFueraRangoException e) {
+						System.out.println("Introduzca un dato correcto para tipo de solicitud (0-adopcion / 1-acogida): ");
+					}
+				} while (!exit);
+				
 				System.out.println("Introduzca su numero de telefono: ");
 				int telefono = TECLADO.nextInt();
 
@@ -158,5 +165,32 @@ public class Principal {
 		}
 
 		nombre_f.close();
+	}
+		
+	public static int leerDatoRango(int min, int max) throws NumeroFueraRangoException{
+		int num;
+		num = leerEntero();
+		
+		if (num < min || num > max) {
+			throw new NumeroFueraRangoException("Error. Las opciones estan en el rango ["+min+", "+max+"].");
+		}
+		return num;
+	}
+	
+	public static int leerEntero() {
+		int opcion = 0;
+		boolean salir = false;
+		do {
+			try {
+				opcion = TECLADO.nextInt();
+				salir = true;
+			} catch (InputMismatchException e) {
+				System.out.println("Error leyendo entero. Reintroducir el dato: ");
+				TECLADO.next();
+			}
+			
+		} while (!salir);
+		
+		return opcion;
 	}
 }
