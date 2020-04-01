@@ -12,7 +12,7 @@ public class Principal {
 		
 		int nAnimales = 15;
 		boolean salir = false, exit = false;
-		int opcion = 0, tipoSolicitud = 0;
+		int opcion = 0, tipoSolicitud = 0, telefono = 0;
 		
 		Animal [] animales = new Animal[nAnimales];
 		Clinica clinica = new Clinica("Veterval", 684574527, 8);
@@ -41,7 +41,6 @@ public class Principal {
 			System.out.println("8.- Salir\n");
 			System.out.println("Introduzca una de las opciones (1-8): ");
 			
-		
 			do  {
 				try {
 					opcion = leerDatoRango(1,8);
@@ -62,7 +61,9 @@ public class Principal {
 				String nombreS = TECLADO.nextLine();
 
 				System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
+				
 				exit = false;
+				
 				do  {
 					try {
 						tipoSolicitud = leerDatoRango(0,1);
@@ -73,12 +74,14 @@ public class Principal {
 				} while (!exit);
 				
 				System.out.println("Introduzca su numero de telefono: ");
-				int telefono = TECLADO.nextInt();
+				
+				exit = false;
 
-				while (telefono < 111111111 || telefono > 999999999) {
-					System.out.println("Introduzca un dato correcto para el telofono: ");
-					telefono = TECLADO.nextInt();
-				}
+				do  {
+					telefono = leerEntero();
+					exit = true;
+				} while (!exit);
+				
 
 				TECLADO.nextLine();
 
@@ -97,7 +100,7 @@ public class Principal {
 				int n = protectora.localizarAnimalProtectora(nombreAnimal);
 
 				if (n != -1) {
-					System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + animales[n].getNSolicitudes());
+					System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + animales[n].getNSolicitudes() + ".\n");
 				}
 
 				else {

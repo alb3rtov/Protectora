@@ -108,7 +108,7 @@ public class Protectora{
 				else {
 					encontrado = true;
 					animales[i].crearSolicitud(nombreS, tipoSolicitud, telefono);
-					cadena = "Solicitud añadida.";
+					cadena = "Solicitud añadida al animal " + nombre;
 					break;
 				}
 			}
