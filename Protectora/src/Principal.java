@@ -86,7 +86,7 @@ public class Principal {
 
 		File f=new File(cadena);
 		Scanner nombre_f = new Scanner (f);
-		int contador = 0;
+		int contadorAnimales = 0;
 		Solicitud [] solicitudes = new Solicitud[10];
 		
 		while (nombre_f.hasNext()){
@@ -107,23 +107,23 @@ public class Principal {
 				boolean ppp = nombre_f.nextBoolean();
 				boolean leishmania = nombre_f.nextBoolean();
 
-				animales[contador] = new Perro(nombre, sexo, anios, sociablePersonas, nSolicitudes, 
+				animales[contadorAnimales] = new Perro(nombre, sexo, anios, sociablePersonas, nSolicitudes, 
 												apadrinado, solicitudes, raza, tamanioKg, ppp, leishmania);
-				contador++;
+				contadorAnimales++;
 			}
 
 			if (tipoAnimal.equalsIgnoreCase("g")) {
 				//Gatos
 				boolean esterilizado = nombre_f.nextBoolean();
 				
-				animales[contador] = new Gato(nombre, sexo, anios, sociablePersonas, nSolicitudes, apadrinado, solicitudes, esterilizado);
-				contador++;
+				animales[contadorAnimales] = new Gato(nombre, sexo, anios, sociablePersonas, nSolicitudes, apadrinado, solicitudes, esterilizado);
+				contadorAnimales++;
 			}
 		}
 		
 		nombre_f.close();
 		
-		return contador;
+		return contadorAnimales;
 	}
 		
 	public static int leerDatoRango(int min, int max) throws NumeroFueraRangoException{
