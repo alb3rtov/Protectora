@@ -11,15 +11,15 @@ abstract class Animal implements Constantes {
 	protected Solicitud [] solicitudes;
 	
 	public Animal(String nombre, String sexo, int edad, boolean sociable, 
-			int nSolicitudes, boolean apadrinado, Solicitud [] solicitudes) {
+			int nSolicitudes, boolean apadrinado) {
 		
 		this.nombre = nombre;
 		this.sexo = sexo;
 		this.edad = edad;
 		this.sociable = sociable;
-		this.nSolicitudes = nSolicitudes;
 		this.apadrinado = apadrinado;
-		this.solicitudes = solicitudes;
+		nSolicitudes = 0;
+		solicitudes = new Solicitud[10];
 	}
 	
 	public String getNombre() {
@@ -36,6 +36,10 @@ abstract class Animal implements Constantes {
 	
 	public boolean getSociable() {
 		return sociable;
+	}
+	
+	public Solicitud [] getSolicitudes(){
+		return solicitudes;
 	}
 	
 	public int getNSolicitudes() {
@@ -75,8 +79,8 @@ abstract class Animal implements Constantes {
 	}
 		
 	public void crearSolicitud(String nombre, int tipoSolicitud, int telefono) {
-		
-		Solicitud solicitud = new Solicitud(nombre, tipoSolicitud, telefono);
+
+		solicitudes[nSolicitudes] = new Solicitud(nombre, tipoSolicitud, telefono);
 		nSolicitudes++;
 	}
 	

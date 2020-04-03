@@ -5,9 +5,9 @@ public class Gato extends Animal {
 	private boolean esterilizado;
 	
 	public Gato(String nombre, String sexo, int anios, boolean sociable, 
-			int nSolicitudes, boolean apadrinado, Solicitud [] solicitudes,  boolean esterilizado) {
+			int nSolicitudes, boolean apadrinado,  boolean esterilizado) {
 		
-		super(nombre, sexo, anios, sociable, nSolicitudes, apadrinado, solicitudes);
+		super(nombre, sexo, anios, sociable, nSolicitudes, apadrinado);
 		this.esterilizado = esterilizado;
 	}
 	

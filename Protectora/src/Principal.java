@@ -108,7 +108,7 @@ public class Principal {
 				boolean leishmania = nombre_f.nextBoolean();
 
 				animales[contadorAnimales] = new Perro(nombre, sexo, anios, sociablePersonas, nSolicitudes, 
-												apadrinado, solicitudes, raza, tamanioKg, ppp, leishmania);
+												apadrinado, raza, tamanioKg, ppp, leishmania);
 				contadorAnimales++;
 			}
 
@@ -116,7 +116,7 @@ public class Principal {
 				//Gatos
 				boolean esterilizado = nombre_f.nextBoolean();
 				
-				animales[contadorAnimales] = new Gato(nombre, sexo, anios, sociablePersonas, nSolicitudes, apadrinado, solicitudes, esterilizado);
+				animales[contadorAnimales] = new Gato(nombre, sexo, anios, sociablePersonas, nSolicitudes, apadrinado, esterilizado);
 				contadorAnimales++;
 			}
 		}
@@ -206,6 +206,10 @@ public class Principal {
 
 		if (n != -1) {
 			System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + protectora.getAnimales()[n].getNSolicitudes() + ".\n");
+			if (n != 0) {
+				System.out.println("Lista de solicitudes de " + nombreAnimal + ": \n");
+				System.out.println(protectora.imprimirSolicitudesAnimal(n));
+			}
 		}
 
 		else {

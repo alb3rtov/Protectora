@@ -43,6 +43,17 @@ public class Protectora {
 		this.animales = animales;
 	}
 	
+	public String imprimirSolicitudesAnimal(int n) {
+		String cadena = "";
+		
+		for (int i = 0; i < animales[n].getSolicitudes().length && animales[n].getSolicitudes()[i] != null; i++) {
+			cadena += animales[n].getSolicitudes()[i].toString(animales[n]);
+		}
+		
+		return cadena;
+	}
+	
+	
 	public boolean addAnimal(Animal animal) {
 		
 		boolean esAgregado;

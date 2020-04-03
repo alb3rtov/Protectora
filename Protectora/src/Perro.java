@@ -8,10 +8,10 @@ public class Perro extends Animal {
 	private boolean leishmania;
 	
 	public Perro(String nombre, String sexo, int anios, boolean sociable, 
-			int nSolicitudes, boolean apadrinado, Solicitud [] solicitudes, String raza, double tamanio, 
+			int nSolicitudes, boolean apadrinado, String raza, double tamanio, 
 			boolean ppp, boolean leishmania) {
 		
-		super(nombre, sexo, anios, sociable, nSolicitudes, apadrinado, solicitudes);
+		super(nombre, sexo, anios, sociable, nSolicitudes, apadrinado);
 		this.raza = raza;
 		this.tamanio = tamanio;
 		this.ppp = ppp;

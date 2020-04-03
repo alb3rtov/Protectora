@@ -42,10 +42,10 @@ public class Solicitud {
 		esApadrinado = animal.getApadrinado();
 		String apadrinado = "";
 		
-		apadrinado = (esApadrinado) ? "Adopción" : "Acogida";
+		apadrinado = (esApadrinado) ? "si" : "no";
 		
-		return nombre + " con número de teléfono " + telefono + "ha realizado una solicitud de tipo: " 
-			+ tipoSolicitud + " y el apadrinamiento es de tipo " + apadrinado;	
+		return " -" + nombre + " con número de teléfono " + telefono + " ha realizado una solicitud de tipo: " 
+			+ tipoSolicitud + " y " + apadrinado + " esta apadrinado.\n";	
 
 	}
 }
