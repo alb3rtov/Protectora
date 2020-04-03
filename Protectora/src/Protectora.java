@@ -1,28 +1,18 @@
 //Alberto Vázquez Martínez y Ángel Villafranca Iniesta
 
-public class Protectora{
+public class Protectora {
 	
 	private int nAnimales;
 	private String nombre;
 	private static final int CAPACIDAD_PROTECTORA = 30;
 	private Animal[] animales;
 	
-	/*
-	public Protectora(String nombre) {
-		super();
-		this.nombre = nombre;
-		
-		animales = new Animal [CAPACIDAD_PROTECTORA];
-		nAnimales = 0;
-	}
-	*/
-	
 	public Protectora(int nAnimales, String nombre, Animal [] animales) {
 		this.nAnimales = nAnimales;
 		this.nombre = nombre;
 		this.animales = animales;
-		
 	}
+	
 	public int getNanimales() {
 		return nAnimales;
 	}
@@ -145,7 +135,7 @@ public class Protectora{
 		double gastos = 0;
 		
 		for (int i = 0; i < animales.length; i++) {
-			gastos = gastos + animales[i].calcularGastosVeterinarioAnimal();
+			gastos = gastos + animales[i].calcularGastosPienso();
 		}
 		
 		return gastos;
@@ -168,7 +158,7 @@ public class Protectora{
 	
 	public double calcularSubvecionAyuntamiento(Ayuntamiento ayuntamiento) {
 		
-		double subvecion = nAnimales * ayuntamiento.getSubvencion();
+		double subvecion = nAnimales * ayuntamiento.getSubvencion() + 1000;
 		return subvecion;
 	}
 	

@@ -16,8 +16,8 @@ public class Principal {
 		
 		Animal [] animales = new Animal[nAnimales];
 		Clinica clinica = new Clinica("Veterval", 684574527, 8);
-		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Valdepeñas", 654745120, 200);
-		Protectora protectora = new Protectora(nAnimales, "Rivanimal", animales);
+		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 200);
+		Protectora protectora = new Protectora(nAnimales, "Alberto y Ángel", animales);
 
 		try {
 			leerAnimales("Animales.txt", animales);
@@ -40,6 +40,8 @@ public class Principal {
 			System.out.println("7.- Calcular la cantidad de subveccion que concede el ayuntamiento");
 			System.out.println("8.- Salir\n");
 			System.out.println("Introduzca una de las opciones (1-8): ");
+			
+			exit = false;
 			
 			do  {
 				try {

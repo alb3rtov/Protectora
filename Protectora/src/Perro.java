@@ -60,7 +60,7 @@ public class Perro extends Animal {
 				gastos = gastos + SEDACION; // Sedaccion de la vacuna de la rabia
 				
 				if (leishmania) {
-					gastos = gastos + LEISHMANIA * 12 + SEDACION * 12; // Una al mes si tiene leishmania
+					gastos = gastos + LEISHMANIA * 12; // Una al mes si tiene leishmania
 				}
 			}
 			
