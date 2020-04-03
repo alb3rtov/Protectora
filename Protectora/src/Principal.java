@@ -10,24 +10,25 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		int nAnimales = 15;
 		boolean salir = false, exit = false;
-		int opcion = 0, tipoSolicitud = 0, telefono = 0;
-		
-		Animal [] animales = new Animal[nAnimales];
+		int opcion = 0;
+		int nAnimales = 0;
+
 		Clinica clinica = new Clinica("Veterval", 684574527, 8);
 		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 200);
-		Protectora protectora = new Protectora(nAnimales, "Alberto y Ángel", animales);
+		Protectora protectora = new Protectora("Alberto y Ángel");
 
 		try {
-			leerAnimales("Animales.txt", animales);
+			nAnimales = leerAnimales("Animales.txt", protectora.getAnimales());
 		}
-		
+
 		catch (IOException e) {
 			System.out.println("El fichero no se ha encontrado");
 			System.out.println(e.getMessage());
 			salir = true;
 		}
+		
+		protectora.setNanimales(nAnimales);
 
 		while (!salir) {
 			System.out.println("------------------- Protectora " + protectora.getNombre() + " -------------------");
@@ -54,83 +55,34 @@ public class Principal {
 			
 			switch (opcion) {
 			case 1:
-				System.out.println(protectora.devolverDatosAnimales());
+				mostrarInformacionAnimales(protectora);
 				break;
 			case 2:
-
-				System.out.println("Introduzca su nombre para realizar la solicitud: ");
-				TECLADO.nextLine();
-				String nombreS = TECLADO.nextLine();
-
-				System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
-				
-				exit = false;
-				
-				do  {
-					try {
-						tipoSolicitud = leerDatoRango(0,1);
-						exit = true;
-					} catch (NumeroFueraRangoException e) {
-						System.out.println("Introduzca un dato correcto para tipo de solicitud (0-adopcion / 1-acogida): ");
-					}
-				} while (!exit);
-				
-				System.out.println("Introduzca su numero de telefono: ");
-				
-				exit = false;
-
-				do  {
-					telefono = leerEntero();
-					exit = true;
-				} while (!exit);
-				
-
-				TECLADO.nextLine();
-
-				String tSolicitud = (tipoSolicitud == 0) ? "adoptar" : "apadrinar";
-				System.out.println("Introduzca el nombre del animal a " + tSolicitud + ": ");
-				String nombre = TECLADO.nextLine();
-
-				System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
-
+				realizarSolicitudes(protectora);
 				break;
 			case 3:
-				System.out.println("Introduzca el nombre del animal a consultar solicitudes: ");
-				TECLADO.nextLine();
-				String nombreAnimal = TECLADO.nextLine(); 
-
-				int n = protectora.localizarAnimalProtectora(nombreAnimal);
-
-				if (n != -1) {
-					System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + animales[n].getNSolicitudes() + ".\n");
-				}
-
-				else {
-					System.out.println("El animal " + nombreAnimal + " no se ha encontrado");
-				}
-
+				consultarSolicitudAnimales(protectora);
 				break;
 			case 4: 
-				System.out.println("Los gastos veterinarios anuales de la protectora son de " + protectora.calcularCostesVeterAnuales(animales) + " €.\n");
+				calcularGastosVeterinariosAnuales(protectora);
 				break;
 			case 5:
-				System.out.println("Los costes totales de una campaña de esterilización de gatas es de " + protectora.calcularGatosEsterGatas(clinica) + " €.\n");
+				calcularCostesCampanaEsterGatas(protectora, clinica);
 				break;
-			case 6: 
-				System.out.println("La cantidad de pienso que necesitan los perros adultos es de " + protectora.calcularCantidadPiensoAdultos(animales) + " kg.\n");
+			case 6:
+				calcularPiensoPerrosAdultosSemanal(protectora);
 				break;
-			case 7: // faltan la cantidad fija
-				System.out.println("La cantidad de subveccion que concede el ayuntamiento es de " + protectora.calcularSubvecionAyuntamiento(ayuntamiento) + " €.\n");
+			case 7:
+				calcularSubveccionAyuntamiento(protectora, ayuntamiento);
 				break;
 			case 8:
-				System.out.println("Fin de programa.");
-				salir = true;
+				salir = salirPrograma();;
 				break;
 			}
 		}
 	}
 	
-	public static void leerAnimales (String cadena, Animal[] animales) throws IOException {
+	public static int leerAnimales (String cadena, Animal[] animales) throws IOException {
 
 		File f=new File(cadena);
 		Scanner nombre_f = new Scanner (f);
@@ -168,8 +120,10 @@ public class Principal {
 				contador++;
 			}
 		}
-
+		
 		nombre_f.close();
+		
+		return contador;
 	}
 		
 	public static int leerDatoRango(int min, int max) throws NumeroFueraRangoException{
@@ -197,5 +151,88 @@ public class Principal {
 		} while (!salir);
 		
 		return opcion;
+	}
+	
+	//Opciones del menu
+	public static void mostrarInformacionAnimales(Protectora protectora) {
+		System.out.println(protectora.devolverDatosAnimales());
+	}
+	
+	public static void realizarSolicitudes(Protectora protectora) {
+		
+		boolean exit = false;
+		int tipoSolicitud = 0, telefono = 0;
+		
+		System.out.println("Introduzca su nombre para realizar la solicitud: ");
+		TECLADO.nextLine();
+		String nombreS = TECLADO.nextLine();
+
+		System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
+		
+		do  {
+			try {
+				tipoSolicitud = leerDatoRango(0,1);
+				exit = true;
+			} catch (NumeroFueraRangoException e) {
+				System.out.println("Introduzca un dato correcto para tipo de solicitud (0-adopcion / 1-acogida): ");
+			}
+		} while (!exit);
+		
+		System.out.println("Introduzca su numero de telefono: ");
+		
+		exit = false;
+
+		do  {
+			telefono = leerEntero();
+			exit = true;
+		} while (!exit);
+		
+
+		TECLADO.nextLine();
+
+		String tSolicitud = (tipoSolicitud == 0) ? "adoptar" : "apadrinar";
+		System.out.println("Introduzca el nombre del animal a " + tSolicitud + ": ");
+		String nombre = TECLADO.nextLine();
+
+		System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
+	}
+	
+	public static void consultarSolicitudAnimales(Protectora protectora) {
+		System.out.println("Introduzca el nombre del animal a consultar solicitudes: ");
+		TECLADO.nextLine();
+		String nombreAnimal = TECLADO.nextLine(); 
+
+		int n = protectora.localizarAnimalProtectora(nombreAnimal);
+
+		if (n != -1) {
+			System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + protectora.getAnimales()[n].getNSolicitudes() + ".\n");
+		}
+
+		else {
+			System.out.println("El animal " + nombreAnimal + " no se ha encontrado");
+		}
+	}
+
+	
+	public static void calcularGastosVeterinariosAnuales(Protectora protectora) {
+		System.out.println("Los gastos veterinarios anuales de la protectora son de " + protectora.calcularCostesVeterAnuales(protectora.getAnimales()) + " €.\n");
+	}
+	
+	public static void calcularCostesCampanaEsterGatas(Protectora protectora, Clinica clinica) {
+		System.out.println("Los costes totales de una campaña de esterilización de gatas es de " + protectora.calcularGatosEsterGatas(clinica) + " €.\n");
+	}
+	
+	public static void calcularPiensoPerrosAdultosSemanal(Protectora protectora) {
+		System.out.println("La cantidad de pienso que necesitan los perros adultos es de " + protectora.calcularCantidadPiensoAdultos(protectora.getAnimales()) + " kg.\n");
+	}
+	
+	public static void calcularSubveccionAyuntamiento(Protectora protectora, Ayuntamiento ayuntamiento) {
+		System.out.println("La cantidad de subveccion que concede el ayuntamiento es de " + protectora.calcularSubvecionAyuntamiento(ayuntamiento) + " €.\n");
+	}
+	
+	public static boolean salirPrograma() {
+		boolean salir = true;
+		System.out.println("Fin de programa");
+		return salir;
 	}
 }

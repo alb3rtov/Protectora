@@ -5,12 +5,14 @@ public class Protectora {
 	private int nAnimales;
 	private String nombre;
 	private static final int CAPACIDAD_PROTECTORA = 30;
+	private static final int  SUBVECION_FIJA = 1000;
 	private Animal[] animales;
 	
-	public Protectora(int nAnimales, String nombre, Animal [] animales) {
-		this.nAnimales = nAnimales;
+	public Protectora(String nombre) {
 		this.nombre = nombre;
-		this.animales = animales;
+		//this.animales = animales;
+		animales = new Animal[CAPACIDAD_PROTECTORA];
+		nAnimales = 0;
 	}
 	
 	public int getNanimales() {
@@ -60,7 +62,7 @@ public class Protectora {
 	
 		int encontrado = -1;
 		
-		for (int i = 0; i < animales.length; i++) {
+		for (int i = 0; animales[i] != null; i++) {
 			if (nombre.equalsIgnoreCase(animales[i].getNombre())) {
 				encontrado = i;
 				break;
@@ -74,8 +76,7 @@ public class Protectora {
 		
 		String cadena = "";
 
-		
-		for (int i = 0; i < animales.length; i++) {
+		for (int i = 0; animales[i] != null; i++) {
 			cadena += animales[i].toString();
 		}
 		
@@ -87,7 +88,7 @@ public class Protectora {
 		boolean encontrado = false;
 		String cadena = "";
 		
-		for (int i = 0; i < animales.length; i++) {
+		for (int i = 0; animales[i] != null; i++) {
 			if (nombre.equalsIgnoreCase(animales[i].getNombre())) {
 				if (animales[i].getNSolicitudes() == 10) {
 					cadena = "No se pueden realizar mas solicitudes al animal " + animales[i].getNombre();
@@ -123,7 +124,7 @@ public class Protectora {
 		
 		double gastos = 0;
 
-		for (int i = 0; i < animales.length; i++) {
+		for (int i = 0; animales[i] != null; i++) {
 			gastos = gastos + animales[i].calcularGastosVeterinarioAnimal();
 		}
 		
@@ -134,7 +135,7 @@ public class Protectora {
 		
 		double gastos = 0;
 		
-		for (int i = 0; i < animales.length; i++) {
+		for (int i = 0; animales[i] != null; i++) {
 			gastos = gastos + animales[i].calcularGastosPienso();
 		}
 		
@@ -145,7 +146,7 @@ public class Protectora {
 		
 		int contador = 0;
 		
-		for (int i = 0; i < animales.length; i++) {
+		for (int i = 0; animales[i] != null; i++) {
 			if (animales[i] instanceof Gato) {
 				if (!((Gato) animales[i]).getEsterilizado()) {
 					contador++;
@@ -158,7 +159,7 @@ public class Protectora {
 	
 	public double calcularSubvecionAyuntamiento(Ayuntamiento ayuntamiento) {
 		
-		double subvecion = nAnimales * ayuntamiento.getSubvencion() + 1000;
+		double subvecion = nAnimales * ayuntamiento.getSubvencion() + SUBVECION_FIJA;
 		return subvecion;
 	}
 	
