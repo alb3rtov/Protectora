@@ -41,7 +41,7 @@ public class Solicitud {
 		boolean esApadrinado;
 		esApadrinado = animal.getApadrinado();
 		String apadrinado = "";
-		
+		 
 		apadrinado = (esApadrinado) ? "si" : "no";
 		
 		return " -" + nombre + " con número de teléfono " + telefono + " ha realizado una solicitud de tipo: " 
