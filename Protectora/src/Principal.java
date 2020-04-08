@@ -31,8 +31,8 @@ public class Principal {
 		protectora.setNanimales(nAnimales);
 
 		while (!salir) {
-			System.out.println("------------------- Protectora " + protectora.getNombre() + " -------------------");
-			System.out.println("\n1.- Mostrar la información de los animales rescatados");
+			System.out.println("------------------- Protectora " + protectora.getNombre() + " -------------------\n");
+			System.out.println("1.- Mostrar la información de los animales rescatados");
 			System.out.println("2.- Realizar una solicitud (0-adopcion / 1-acogida) de un animal");
 			System.out.println("3.- Lista de solicitudes de adopcion de un animal");
 			System.out.println("4.- Calcular los gastos veterinarios anuales de la protectora");
@@ -126,6 +126,32 @@ public class Principal {
 		return contadorAnimales;
 	}
 		
+	public static String leerNombreAnimal(Protectora protectora) throws AnimalNoEncontradoException {
+
+		String nombre = TECLADO.nextLine();
+		
+		int n = protectora.localizarAnimalProtectora(nombre);
+		
+		if (n == -1) {
+			throw new AnimalNoEncontradoException("Error. Animal no encontrado.");
+		}	
+			
+		return nombre;
+		
+	}
+	
+	
+	
+	public static void comprobarSolicitudesAnimal(Protectora protectora, String nombre) throws MuchasSolicitudesException {
+		
+		int n = protectora.localizarAnimalProtectora(nombre);
+		
+		if (protectora.getAnimales()[n].getNSolicitudes() == 10) {
+			throw new MuchasSolicitudesException("Error. El número máximo de solicitudes es de 10");
+		}
+
+	}
+	
 	public static int leerDatoRango(int min, int max) throws NumeroFueraRangoException{
 		int num;
 		num = leerEntero();
@@ -162,12 +188,36 @@ public class Principal {
 		
 		boolean exit = false;
 		int tipoSolicitud = 0, telefono = 0;
+		String nombre = "";
+
+		TECLADO.nextLine();
+		System.out.println("Introduzca el nombre del animal: ");
+		
+		exit = false;
+		
+		do {
+			try {
+				nombre = leerNombreAnimal(protectora);
+				comprobarSolicitudesAnimal(protectora, nombre);
+				exit = true;
+			}
+
+			catch (AnimalNoEncontradoException e) {
+				System.out.println("Animal no encontrado, introduzca un nombre para el animal: ");
+			}
+			catch (MuchasSolicitudesException e) {
+				System.out.println("El animal ya tiene 10 solicitudes, introduzca otro animal: ");
+			}
+		}
+
+		while (!exit);
 		
 		System.out.println("Introduzca su nombre para realizar la solicitud: ");
-		TECLADO.nextLine();
 		String nombreS = TECLADO.nextLine();
 
 		System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
+		
+		exit = false;
 		
 		do  {
 			try {
@@ -186,13 +236,6 @@ public class Principal {
 			telefono = leerEntero();
 			exit = true;
 		} while (!exit);
-		
-
-		TECLADO.nextLine();
-
-		String tSolicitud = (tipoSolicitud == 0) ? "adoptar" : "apadrinar";
-		System.out.println("Introduzca el nombre del animal a " + tSolicitud + ": ");
-		String nombre = TECLADO.nextLine();
 
 		System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
 	}
@@ -206,7 +249,7 @@ public class Principal {
 
 		if (n != -1) {
 			System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + protectora.getAnimales()[n].getNSolicitudes() + ".\n");
-			if (n != 0) {
+			if (protectora.getAnimales()[n].getNSolicitudes() != 0) {
 				System.out.println("Lista de solicitudes de " + nombreAnimal + ": \n");
 				System.out.println(protectora.imprimirSolicitudesAnimal(n));
 			}

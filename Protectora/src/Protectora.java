@@ -101,23 +101,11 @@ public class Protectora {
 		
 		for (int i = 0; animales[i] != null; i++) {
 			if (nombre.equalsIgnoreCase(animales[i].getNombre())) {
-				if (animales[i].getNSolicitudes() == 10) {
-					cadena = "No se pueden realizar mas solicitudes al animal " + animales[i].getNombre();
-					encontrado = true;
-					break;
-				}
-				
-				else {
-					encontrado = true;
-					animales[i].crearSolicitud(nombreS, tipoSolicitud, telefono);
-					cadena = "Solicitud añadida al animal " + nombre;
-					break;
-				}
+				encontrado = true;
+				animales[i].crearSolicitud(nombreS, tipoSolicitud, telefono);
+				cadena = "Solicitud añadida al animal " + nombre;
+				break;
 			}
-		}
-		
-		if (!encontrado) {
-			cadena = "No se ha encontrado ningun animal con el nombre " + nombre;
 		}
 		
 		return cadena;
