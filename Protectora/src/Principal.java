@@ -1,4 +1,4 @@
-//Alberto Vázquez Martínez y Ángel Villafranca Iniesta
+//D2_GP02 Alberto Vázquez Martínez y Ángel Villafranca Iniesta
 
 import java.io.File;
 import java.io.IOException;
@@ -149,7 +149,6 @@ public class Principal {
 		if (protectora.getAnimales()[n].getNSolicitudes() == 10) {
 			throw new MuchasSolicitudesException("Error. El número máximo de solicitudes es de 10");
 		}
-
 	}
 	
 	public static int leerDatoRango(int min, int max) throws NumeroFueraRangoException{
@@ -260,17 +259,16 @@ public class Principal {
 		}
 	}
 
-	
 	public static void calcularGastosVeterinariosAnuales(Protectora protectora) {
 		System.out.println("Los gastos veterinarios anuales de la protectora son de " + protectora.calcularCostesVeterAnuales(protectora.getAnimales()) + " €.\n");
 	}
 	
 	public static void calcularCostesCampanaEsterGatas(Protectora protectora, Clinica clinica) {
-		System.out.println("Los costes totales de una campaña de esterilización de gatas es de " + protectora.calcularGatosEsterGatas(clinica) + " €.\n");
+		System.out.println("Los costes totales de una campaña de esterilización de gatas es de " + protectora.calcularGastosEsterGatas(clinica) + " €.\n");
 	}
 	
 	public static void calcularPiensoPerrosAdultosSemanal(Protectora protectora) {
-		System.out.println("La cantidad de pienso que necesitan los perros adultos es de " + protectora.calcularCantidadPiensoAdultos(protectora.getAnimales()) + " kg.\n");
+		System.out.printf("La cantidad de pienso que necesitan los perros adultos es de %.2f kg \n\n", protectora.calcularCantidadPiensoAdultos(protectora.getAnimales()));
 	}
 	
 	public static void calcularSubveccionAyuntamiento(Protectora protectora, Ayuntamiento ayuntamiento) {

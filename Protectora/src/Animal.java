@@ -1,14 +1,14 @@
-//Alberto Vázquez Martínez y Ángel Villafranca Iniesta
+//D2_GP02 Alberto Vázquez Martínez y Ángel Villafranca Iniesta
 
 abstract class Animal implements Constantes {
-	
+	//Atributos
 	protected String nombre;
 	protected String sexo;
 	protected int edad;
 	protected boolean sociable;
 	protected int nSolicitudes;
 	protected boolean apadrinado;
-	protected Solicitud [] solicitudes;
+	protected Solicitud [] solicitudes; //Relación de asociacion con la clase Solicitud
 	
 	public Animal(String nombre, String sexo, int edad, boolean sociable, 
 			int nSolicitudes, boolean apadrinado) {
@@ -18,7 +18,7 @@ abstract class Animal implements Constantes {
 		this.edad = edad;
 		this.sociable = sociable;
 		this.apadrinado = apadrinado;
-		nSolicitudes = 0;
+		nSolicitudes = 0; // El numero de solicitudes al comienzo es de 0
 		solicitudes = new Solicitud[10];
 	}
 	
@@ -100,7 +100,6 @@ abstract class Animal implements Constantes {
 		return "El nombre del animal es " + nombre + ", la edad es de " + edad + " años, " + esSociable + 
 				", actualmente tiene " + nSolicitudes + "solicitudes, " + esApadrinado + "\n";
 	}
-	
 }
 
 
