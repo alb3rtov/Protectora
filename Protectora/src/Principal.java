@@ -1,18 +1,19 @@
 //D2_GP02 Alberto Vázquez Martínez y Ángel Villafranca Iniesta
 
+// Importamos las bibliotecas necesarias
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
 public class Principal {
-
+	
+	// Definimos la variable TECLADO como constante
 	final static Scanner TECLADO = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		
 		boolean salir = false, exit = false;
-		int opcion = 0;
-		int nAnimales = 0;
+		int opcion = 0, nAnimales = 0;
 
 		Clinica clinica = new Clinica("Veterval", 684574527, 8);
 		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 200);

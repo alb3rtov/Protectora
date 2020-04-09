@@ -1,6 +1,6 @@
 //D2_GP02 Alberto Vázquez Martínez y Ángel Villafranca Iniesta
 
-abstract class Animal implements Constantes {
+abstract class Animal implements Constantes { // Se implementa la interfaz Constantes para utilizar sus atributos
 	//Atributos
 	protected String nombre;
 	protected String sexo;
@@ -10,6 +10,7 @@ abstract class Animal implements Constantes {
 	protected boolean apadrinado;
 	protected Solicitud [] solicitudes; //Relación de asociacion con la clase Solicitud
 	
+	//Constructor
 	public Animal(String nombre, String sexo, int edad, boolean sociable, 
 			int nSolicitudes, boolean apadrinado) {
 		
@@ -22,6 +23,7 @@ abstract class Animal implements Constantes {
 		solicitudes = new Solicitud[10];
 	}
 	
+	//Getters y Setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -77,18 +79,22 @@ abstract class Animal implements Constantes {
 	public void setSolicitudes(Solicitud [] solicitudes) {
 		this.solicitudes = solicitudes;
 	}
-		
+	
+	//Este metodo se utiliza para crear la solicitudes para un animal.
+	//Una vez añadida la solicitud, se aumenta el numero de solicitudes.
 	public void crearSolicitud(String nombre, int tipoSolicitud, int telefono) {
 
 		solicitudes[nSolicitudes] = new Solicitud(nombre, tipoSolicitud, telefono);
 		nSolicitudes++;
 	}
 	
+	// Este metodo es un metodo abstracto. Se define abstracto ya que el comportamiento de las clases hijas es diferentes entre ellas.
 	abstract double calcularGastosVeterinarioAnimal();
 	
+	// Ocurre lo mismo en este método abstracto.
 	abstract double calcularGastosPienso();
 	
-	
+	// Metodo toSTring que devuelve una cadena con la información del animal
 	public String toString() {
 		
 		String esSociable = "";

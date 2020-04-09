@@ -6,8 +6,9 @@ public class Protectora {
 	private String nombre;
 	private static final int CAPACIDAD_PROTECTORA = 30; // Constante con la capacidad máxima de la protectora
 	private static final int  SUBVECION_FIJA = 1000; // Constante con la subvecion fija del ayuntamiento
-	private Animal[] animales; // Relación de asociación con la clase Animal
+	private Animal[] animales; // Relación de asociación con la clase Animal, referencia polimorfica.
 	
+	//Constructor
 	public Protectora(String nombre) {
 		this.nombre = nombre;
 		animales = new Animal[CAPACIDAD_PROTECTORA]; // Se define el array con el tamaño máximo de la proctectora
@@ -188,7 +189,6 @@ public class Protectora {
 		for (int i = 0; i < animales.length; i++) {
 			if (animales[i] instanceof Perro) {
 				if (((Perro) animales[i]).getTamanio() >= 25 ) {
-					//gastos = gastos + ((Perro) animales[i]).getTamanio();
 					gastos = gastos + animales[i].calcularGastosPienso();
 				}
 			}
