@@ -265,24 +265,28 @@ public class Principal {
 		System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
 	}
 	
-	
+	// Este metodo solicita al usuario un nombre de un animal e imprimirá la información relativa a las solicitudes
+	// Si el animal no existe saltará la excepción ANimalNoEncontradoException
 	public static void consultarSolicitudAnimales(Protectora protectora) {
-		System.out.println("Introduzca el nombre del animal a consultar solicitudes: ");
+		
+		String nombreAnimal = "";
 		TECLADO.nextLine();
-		String nombreAnimal = TECLADO.nextLine(); 
-
-		int n = protectora.localizarAnimalProtectora(nombreAnimal);
-
-		if (n != -1) {
+		System.out.println("Introduzca el nombre del animal a consultar solicitudes: ");
+		
+		try {
+			nombreAnimal = leerNombreAnimal(protectora);
+			
+			int n = protectora.localizarAnimalProtectora(nombreAnimal);
+			
 			System.out.println("El numero de solicitudes del animal " + nombreAnimal + " es de " + protectora.getAnimales()[n].getNSolicitudes() + ".\n");
 			if (protectora.getAnimales()[n].getNSolicitudes() != 0) {
 				System.out.println("Lista de solicitudes de " + nombreAnimal + ": \n");
 				System.out.println(protectora.imprimirSolicitudesAnimal(n));
 			}
 		}
-
-		else {
-			System.out.println("El animal " + nombreAnimal + " no se ha encontrado");
+		
+		catch (AnimalNoEncontradoException e) {
+			System.out.println("Error. Animal no encontrado.\n");
 		}
 	}
 	
