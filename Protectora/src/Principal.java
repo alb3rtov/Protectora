@@ -12,25 +12,30 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
+		// Variables
 		boolean salir = false, exit = false;
 		int opcion = 0, nAnimales = 0;
-
+		
+		// Creación de objetos
 		Clinica clinica = new Clinica("Veterval", 684574527, 8);
 		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 200);
 		Protectora protectora = new Protectora("Alberto y Ángel");
 
+		// Llamamos al metodo leerAnimales y le pasamos como parametro el nombre del fichero y el array de animales
 		try {
 			nAnimales = leerAnimales("Animales.txt", protectora.getAnimales());
 		}
-
+		// Si no se encuentra el fichero salta esta excepcion y termina el programa
 		catch (IOException e) {
 			System.out.println("El fichero no se ha encontrado");
 			System.out.println(e.getMessage());
 			salir = true;
 		}
 		
+		// Establece el numero de animales contados por la funcion leerAnimales
 		protectora.setNanimales(nAnimales);
 
+		// Bucle while con el menu principal del programa
 		while (!salir) {
 			System.out.println("------------------- Protectora " + protectora.getNombre() + " -------------------\n");
 			System.out.println("1.- Mostrar la información de los animales rescatados");
@@ -43,8 +48,12 @@ public class Principal {
 			System.out.println("8.- Salir\n");
 			System.out.println("Introduzca una de las opciones (1-8): ");
 			
+			
 			exit = false;
 			
+			// Comprobación de rango para opciones de menú
+			// Si la excepción salta, al encontrarse esta parte del código dentro de un bucle, 
+			// se volverá a repetir hasta que el usuario introduzca un dato correcto.
 			do  {
 				try {
 					opcion = leerDatoRango(1,8);
@@ -54,6 +63,8 @@ public class Principal {
 				}
 			} while (!exit);
 			
+			// Switch con las diferentes opciones del menú
+			// Cada opción llama a una función diferente y le pasa como parametro el objeto protectora y en otros casos clinica y ayuntamiento
 			switch (opcion) {
 			case 1:
 				mostrarInformacionAnimales(protectora);
@@ -83,6 +94,7 @@ public class Principal {
 		}
 	}
 	
+	// Esta función proceso el archivo Animales.txt y devuelve el numero de animales que introduce en el array.
 	public static int leerAnimales (String cadena, Animal[] animales) throws IOException {
 
 		File f=new File(cadena);
@@ -126,7 +138,8 @@ public class Principal {
 		
 		return contadorAnimales;
 	}
-		
+	
+	// Esta función recibe el nombre de un animal y se comprueba si dicho animal se encuentra dentro del array de Animale
 	public static String leerNombreAnimal(Protectora protectora) throws AnimalNoEncontradoException {
 
 		String nombre = TECLADO.nextLine();
@@ -152,6 +165,9 @@ public class Principal {
 		}
 	}
 	
+	
+	// Esta función comprueba si el numero introducido por el usuario esta entre el rango correspondiente.
+	// En caso de que no se encuentre en el rango, saltará la excepción NumeroFueraRangoException
 	public static int leerDatoRango(int min, int max) throws NumeroFueraRangoException{
 		int num;
 		num = leerEntero();
@@ -162,6 +178,8 @@ public class Principal {
 		return num;
 	}
 	
+	// Esta función comprueba si el usuario introduce un numero entero.
+	// En caso de que no introduzca un numero entero, saltará la excepción InputMismatchException
 	public static int leerEntero() {
 		int opcion = 0;
 		boolean salir = false;
@@ -193,8 +211,10 @@ public class Principal {
 		TECLADO.nextLine();
 		System.out.println("Introduzca el nombre del animal: ");
 		
-		exit = false;
-		
+		// Llamamos a la función leerNombreAnimal
+		// Si no se encuentra en animal en el array de animales, se volverá a solicitar un nombre correcto
+		// En el caso de que si exista el animal, se comprobará si el numero de solicitudes es de 10
+		// Si tiene 10 solicitudes, se lo volverá a solicitar el nombre de un animal que no tenga 10 solicitudes
 		do {
 			try {
 				nombre = leerNombreAnimal(protectora);
@@ -208,17 +228,19 @@ public class Principal {
 			catch (MuchasSolicitudesException e) {
 				System.out.println("El animal ya tiene 10 solicitudes, introduzca otro animal: ");
 			}
-		}
-
-		while (!exit);
+		} while (!exit);
 		
+		// Nombre de la persona que realiza la solicitud
 		System.out.println("Introduzca su nombre para realizar la solicitud: ");
 		String nombreS = TECLADO.nextLine();
 
+		
 		System.out.println("Introduzca el tipo de solicitud (0-adopcion / 1-acogida): ");
 		
 		exit = false;
 		
+		// Se comprueba mediante la función leerDatoRango si el numero introducido esta entre 0 y 1
+		// Si no encuentra dentro del rango, se volverá a solicitar
 		do  {
 			try {
 				tipoSolicitud = leerDatoRango(0,1);
@@ -231,14 +253,18 @@ public class Principal {
 		System.out.println("Introduzca su numero de telefono: ");
 		
 		exit = false;
-
+		
+		// Comprueba si el dato introducido por el usuario es un numero entero
 		do  {
 			telefono = leerEntero();
 			exit = true;
 		} while (!exit);
-
+		
+		// Si todos los datos introducidos por el usuario son correctos, entonces, se puede realizar la solicitud
+		// Se llama a la función addSolicitud de la clase protectora que a su vez llamará a la función crearSolicitud
 		System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
 	}
+	
 	
 	public static void consultarSolicitudAnimales(Protectora protectora) {
 		System.out.println("Introduzca el nombre del animal a consultar solicitudes: ");
@@ -259,23 +285,28 @@ public class Principal {
 			System.out.println("El animal " + nombreAnimal + " no se ha encontrado");
 		}
 	}
-
+	
+	//Llama al método calcularCostesVeterAnuales donde se calcula el total de gastos veterinarios de todos los animales actuales de la protectora.
 	public static void calcularGastosVeterinariosAnuales(Protectora protectora) {
 		System.out.println("Los gastos veterinarios anuales de la protectora son de " + protectora.calcularCostesVeterAnuales(protectora.getAnimales()) + " €.\n");
 	}
 	
+	//Llama al metodo calcularCostesEsterGatas donde se calcular el total de costes de esterilización de todas las gastas no esterilizadas.
 	public static void calcularCostesCampanaEsterGatas(Protectora protectora, Clinica clinica) {
 		System.out.println("Los costes totales de una campaña de esterilización de gatas es de " + protectora.calcularGastosEsterGatas(clinica) + " €.\n");
 	}
 	
+	// Llama al metodo calcularCantidadPiensoAdultos donde se calcula la cantidad pienso semanal que necesitas los perros adultos
 	public static void calcularPiensoPerrosAdultosSemanal(Protectora protectora) {
 		System.out.printf("La cantidad de pienso que necesitan los perros adultos es de %.2f kg \n\n", protectora.calcularCantidadPiensoAdultos(protectora.getAnimales()));
 	}
 	
+	// Llama al metodo calcularSubveccionAyuntamiento donde se calcula la subvecion total otorgadada por el ayuntamiento
 	public static void calcularSubveccionAyuntamiento(Protectora protectora, Ayuntamiento ayuntamiento) {
 		System.out.println("La cantidad de subveccion que concede el ayuntamiento es de " + protectora.calcularSubvecionAyuntamiento(ayuntamiento) + " €.\n");
 	}
 	
+	// Este metodo devuelve un boolean true para terminar el bucle donde se encuentra el menu principal y asi finalizar el programa
 	public static boolean salirPrograma() {
 		boolean salir = true;
 		System.out.println("Fin de programa");
