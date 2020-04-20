@@ -85,18 +85,18 @@ public class Perro extends Animal { // Se utiliza extends para heredar de la cla
 			if (tamanio <= 15) {
 				//200 gr al dia
 				cantidadPienso = 200;
-				gastos = cantidadPienso * 7;
+				gastos = cantidadPienso * 7 / 1000; // Division entre 1000 para pasarlo a kilos
 			}
 			else if (tamanio > 15 && tamanio <= 25) {
 				//300 gr al dia
 				cantidadPienso = 300;
-				gastos = cantidadPienso * 7;
+				gastos = cantidadPienso * 7 / 1000; // Division entre 1000 para pasarlo a kilos
 			}
 			
 			else {
 				//1.5% de su peso en comida al dia.
 				cantidadPienso = tamanio * (1.5/100);
-				gastos = cantidadPienso * 7;
+				gastos = cantidadPienso * 7; // No se divide entre 1000 por que ya esta en kilos
 			}
 		}
 		

@@ -17,8 +17,8 @@ public class Principal {
 		int opcion = 0, nAnimales = 0;
 		
 		// Creación de objetos
-		Clinica clinica = new Clinica("Veterval", 684574527, 8);
-		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 200);
+		Clinica clinica = new Clinica("Veterval", 684574527, 50);
+		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 20);
 		Protectora protectora = new Protectora("Alberto y Ángel");
 
 		// Llamamos al metodo leerAnimales y le pasamos como parametro el nombre del fichero y el array de animales

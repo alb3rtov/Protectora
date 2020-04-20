@@ -124,7 +124,7 @@ public class Protectora {
 	public double calcularGastosEsterGatas(Clinica clinica) {
 	
 		double gastos = 0;
-		gastos = clinica.getPrecio() * numeroGatasNoEsterilizadas() * 12; // 10 es el coste de esterilizacion
+		gastos = clinica.getPrecio() * numeroGatasNoEsterilizadas();
 		
 		return gastos;
 	}
@@ -162,7 +162,7 @@ public class Protectora {
 		
 		for (int i = 0; animales[i] != null; i++) {
 			if (animales[i] instanceof Gato) {
-				if (!((Gato) animales[i]).getEsterilizado()) {
+				if (!((Gato) animales[i]).getEsterilizado() && animales[i].getSexo().equalsIgnoreCase("h")) {
 					contador++;
 				}
 			}
@@ -188,9 +188,9 @@ public class Protectora {
 
 		for (int i = 0; i < animales.length; i++) {
 			if (animales[i] instanceof Perro) {
-				if (((Perro) animales[i]).getTamanio() >= 25 ) {
+				//if (animales[i].getEdad() * 12 >= 19) {
 					gastos = gastos + animales[i].calcularGastosPienso();
-				}
+				//}
 			}
 		}
 		
