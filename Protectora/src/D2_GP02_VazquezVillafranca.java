@@ -94,7 +94,7 @@ public class D2_GP02_VazquezVillafranca {
 		}
 	}
 	
-	// Esta función proceso el archivo Animales.txt y devuelve el numero de animales que introduce en el array.
+	// Esta función procesa el archivo Animales.txt y devuelve el numero de animales que introduce en el array.
 	public static int leerAnimales (String cadena, Animal[] animales) throws IOException {
 
 		File f=new File(cadena);
@@ -155,7 +155,7 @@ public class D2_GP02_VazquezVillafranca {
 	}
 	
 	
-	
+	// Comprueba el numero de solicitudes del animal (si es 10 lanza la excepción creada)
 	public static void comprobarSolicitudesAnimal(Protectora protectora, String nombre) throws MuchasSolicitudesException {
 		
 		int n = protectora.localizarAnimalProtectora(nombre);

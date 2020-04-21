@@ -38,6 +38,7 @@ public class Solicitud {
 		this.telefono = telefono;
 	} 
 	
+	// Ampliación
 	// Metodo toString que devuelve la información de las solicitudes de un Animal
 	public String toString(Animal animal) {
 		

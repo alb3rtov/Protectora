@@ -1,17 +1,19 @@
-//Alberto Vázquez Martínez y Ángel Villafranca Iniesta
+//D2_GP02 Alberto Vázquez Martínez y Ángel Villafranca Iniesta
 
 public class Clinica {
-
+	//Atributos
 	private String nombre;
 	private int telefono;
 	private double precio;
 	
+	//Constructor
 	public Clinica(String nombre, int telefono, double precio) {
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.precio = precio;
 	}
 
+	//Getters y Setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -36,6 +38,7 @@ public class Clinica {
 		this.precio = precio;
 	}
 
+	//Metodo toString que devuelve la información sobre la clínica
 	public String toString() {
 		return "El nombre la clinica es: " + nombre + ", su telefono es " + telefono + 
 				" y el precio por esterilización de gatas es de " + precio + ".";

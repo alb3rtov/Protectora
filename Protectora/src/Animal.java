@@ -20,7 +20,7 @@ abstract class Animal implements Constantes { // Se implementa la interfaz Const
 		this.sociable = sociable;
 		this.apadrinado = apadrinado;
 		nSolicitudes = 0; // El numero de solicitudes al comienzo es de 0
-		solicitudes = new Solicitud[10];
+		solicitudes = new Solicitud[10]; // 10 Solicitudes como máximo
 	}
 	
 	//Getters y Setters

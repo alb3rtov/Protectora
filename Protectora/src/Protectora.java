@@ -60,7 +60,7 @@ public class Protectora {
 		
 		boolean esAgregado;
 		if (nAnimales < animales.length) {
-			animales[nAnimales++] = animal;
+			animales[nAnimales++] = animal; // agregamos el animal al array y aumentamos nAnimales
 			esAgregado = true;
 		}
 		else {

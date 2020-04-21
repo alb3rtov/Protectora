@@ -37,9 +37,7 @@ public class Gato extends Animal { // Se utiliza extends para heredar de la clas
 		double gastos = 0;
 		
 		if (!apadrinado && !esterilizado && sexo.equalsIgnoreCase("h")) {
-			//if (!esterilizado) {
 				gastos = ESTERILIZACION * 12; //Una al mes
-			//}
 		}
 		
 		return gastos;
