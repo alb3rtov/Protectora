@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class G02_VazquezVillafranca {
+public class D2_GP02_VazquezVillafranca {
 	
 	// Definimos la variable TECLADO como constante
 	final static Scanner TECLADO = new Scanner(System.in);
