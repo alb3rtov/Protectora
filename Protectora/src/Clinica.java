@@ -3,11 +3,11 @@
 public class Clinica {
 	//Atributos
 	private String nombre;
-	private int telefono;
+	private String telefono;
 	private double precio;
 	
 	//Constructor
-	public Clinica(String nombre, int telefono, double precio) {
+	public Clinica(String nombre, String telefono, double precio) {
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.precio = precio;
@@ -18,7 +18,7 @@ public class Clinica {
 		return nombre;
 	}
 	
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 	
@@ -30,7 +30,7 @@ public class Clinica {
 		this.nombre = nombre;
 	}
 	
-	public void setTelefono(int telefono) {	
+	public void setTelefono(String telefono) {	
 		this.telefono = telefono;
 	}
 	

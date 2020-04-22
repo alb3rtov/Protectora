@@ -17,8 +17,8 @@ public class D2_GP02_VazquezVillafranca {
 		int opcion = 0, nAnimales = 0;
 		
 		// Creación de objetos
-		Clinica clinica = new Clinica("Veterval", 684574527, 50);
-		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", 654745120, 20);
+		Clinica clinica = new Clinica("Veterval", "684574527", 50);
+		Ayuntamiento ayuntamiento = new Ayuntamiento("Ayuntamiento Ciudad Real", "654745120", 20);
 		Protectora protectora = new Protectora("Alberto y Ángel");
 
 		// Llamamos al metodo leerAnimales y le pasamos como parametro el nombre del fichero y el array de animales
@@ -250,19 +250,25 @@ public class D2_GP02_VazquezVillafranca {
 			}
 		} while (!exit);
 		
-		System.out.println("Introduzca su numero de telefono: ");
+		TECLADO.nextLine();
 		
-		exit = false;
+		System.out.println("Introduzca su numero de telefono: ");
+		String ntelefono = TECLADO.nextLine();
+		
+		//exit = false;
 		
 		// Comprueba si el dato introducido por el usuario es un numero entero
-		do  {
-			telefono = leerEntero();
-			exit = true;
-		} while (!exit);
+		//do  {
+		//	telefono = leerEntero();
+		//	exit = true;
+		//} while (!exit);
+		
+
+		
 		
 		// Si todos los datos introducidos por el usuario son correctos, entonces, se puede realizar la solicitud
 		// Se llama a la función addSolicitud de la clase protectora que a su vez llamará a la función crearSolicitud
-		System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, telefono, nombre) + "\n");
+		System.out.println(protectora.addSolicitud(nombreS, tipoSolicitud, ntelefono, nombre) + "\n");
 	}
 	
 	// Este metodo solicita al usuario un nombre de un animal e imprimirá la información relativa a las solicitudes

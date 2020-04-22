@@ -82,7 +82,7 @@ abstract class Animal implements Constantes { // Se implementa la interfaz Const
 	
 	//Este metodo se utiliza para crear la solicitudes para un animal.
 	//Una vez añadida la solicitud, se aumenta el numero de solicitudes.
-	public void crearSolicitud(String nombre, int tipoSolicitud, int telefono) {
+	public void crearSolicitud(String nombre, int tipoSolicitud, String telefono) {
 
 		solicitudes[nSolicitudes] = new Solicitud(nombre, tipoSolicitud, telefono);
 		nSolicitudes++;

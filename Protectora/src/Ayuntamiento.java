@@ -3,11 +3,11 @@
 public class Ayuntamiento {
 	//Atributos
 	private String nombre;
-	private int telefono;
+	private String telefono;
 	private double subvencion;
 
 	//Constructor
-	public Ayuntamiento(String nombre, int telefono, double subvencion) {
+	public Ayuntamiento(String nombre, String telefono, double subvencion) {
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.subvencion = subvencion;
@@ -18,7 +18,7 @@ public class Ayuntamiento {
 		return nombre;
 	}
 	
-	public int getTelefono() {	
+	public String getTelefono() {	
 		return telefono;
 	}
 	
@@ -30,7 +30,7 @@ public class Ayuntamiento {
 		this.nombre = nombre;
 	}
 	
-	public void setTelefono(int telefono) {	
+	public void setTelefono(String telefono) {	
 		this.telefono = telefono;
 	}
 

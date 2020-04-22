@@ -102,7 +102,7 @@ public class Protectora {
 	
 	// En este método comienza la creación de una solicitud.
 	// Recoge los datos introducidos por el usuario, ya comprobados, y se llama al metodo de animales crearSolicitud();
-	public String addSolicitud(String nombreS, int tipoSolicitud, int telefono, String nombre) {
+	public String addSolicitud(String nombreS, int tipoSolicitud, String telefono, String nombre) {
 		boolean encontrado = false;
 		String cadena = "";
 		

@@ -4,10 +4,10 @@ public class Solicitud {
 	// Atributos
 	private String nombre;
 	private int tipoSolicitud;
-	private int telefono;
+	private String telefono;
 	
 	// Constructor
-	public Solicitud(String nombre, int tipoSolicitud, int telefono) {
+	public Solicitud(String nombre, int tipoSolicitud, String telefono) {
 		this.nombre = nombre;
 		this.tipoSolicitud = tipoSolicitud;
 		this.telefono = telefono;
@@ -22,7 +22,7 @@ public class Solicitud {
 		return tipoSolicitud;
 	}
 	
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 	
@@ -34,7 +34,7 @@ public class Solicitud {
 		this.tipoSolicitud = tipoSolicitud;
 	}
 	
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	} 
 	
